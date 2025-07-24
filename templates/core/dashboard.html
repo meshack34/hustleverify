@@ -1,0 +1,52 @@
+<!-- core/templates/core/dashboard.html -->
+{% extends 'base.html' %}
+{% block content %}
+<section class="text-center p-10 bg-gray-100">
+    <h1 class="text-4xl font-bold text-blue-800">Verified Hustlers. Trusted Services.</h1>
+    <p class="mt-4 text-lg text-gray-700">Connecting you with verified local experts across Kenya for fast, affordable, and secure services.</p>
+    <div class="mt-6 flex justify-center gap-4">
+        <a href="#" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Find a Hustler</a>
+        <a href="#" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Offer Your Skill</a>
+    </div>
+</section>
+
+<section class="p-10 bg-white">
+    <h2 class="text-3xl font-semibold text-center text-blue-800 mb-8">Popular Services</h2>
+    <div class="grid md:grid-cols-4 gap-6 text-center">
+        <div><h3 class="text-xl font-bold">Plumbers</h3><p>Expert plumbing services for homes and businesses</p></div>
+        <div><h3 class="text-xl font-bold">Electricians</h3><p>Certified electrical installations and repairs</p></div>
+        <div><h3 class="text-xl font-bold">Cleaners</h3><p>Professional cleaning services</p></div>
+        <div><h3 class="text-xl font-bold">Bakers</h3><p>Custom cakes and baked goods</p></div>
+    </div>
+    <div class="text-center mt-6">
+        <a href="#" class="text-blue-600 hover:underline">View All Services</a>
+    </div>
+</section>
+
+<section class="p-10 bg-gray-100">
+    <h2 class="text-3xl font-semibold text-center text-blue-800 mb-8">How HustleVerify Works</h2>
+    <div class="grid md:grid-cols-4 gap-6 text-center">
+        <div><h3 class="text-2xl font-bold text-blue-600">1</h3><p>Sign Up - Register as a client or service provider</p></div>
+        <div><h3 class="text-2xl font-bold text-blue-600">2</h3><p>Get Verified - Providers complete verification process</p></div>
+        <div><h3 class="text-2xl font-bold text-blue-600">3</h3><p>Connect - Find or offer services in your area</p></div>
+        <div><h3 class="text-2xl font-bold text-blue-600">4</h3><p>Grow - Build your reputation and client base</p></div>
+    </div>
+</section>
+
+<section class="p-10 bg-white text-center">
+    <h2 class="text-3xl font-semibold text-blue-800 mb-6">What Our Users Say</h2>
+    <blockquote class="italic text-gray-700 mb-4">"HustleVerify helped me find a reliable plumber within minutes. The service was excellent!"</blockquote>
+    <p class="font-bold text-blue-700">Sarah K. - Nairobi</p>
+    <blockquote class="italic text-gray-700 mt-8 mb-4">"As an electrician, I've gotten more jobs through HustleVerify than any other platform."</blockquote>
+    <p class="font-bold text-blue-700">James M. - Mombasa</p>
+</section>
+
+<section class="bg-blue-800 text-white text-center p-10">
+    <h2 class="text-3xl font-bold mb-4">Ready to Hustle?</h2>
+    <p class="mb-6">Join thousands of Kenyans finding and offering trusted services</p>
+    <div class="flex justify-center gap-4">
+        <a href="#" class="bg-white text-blue-800 px-6 py-2 rounded hover:bg-gray-200">Find a Service</a>
+        <a href="#" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Become a Provider</a>
+    </div>
+</section>
+{% endblock %}
