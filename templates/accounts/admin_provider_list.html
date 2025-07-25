@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Manage Providers{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto bg-white p-8 rounded shadow">
+  <h2 class="text-2xl font-bold mb-6">Service Providers Management</h2>
+  <table class="min-w-full bg-white border border-gray-300">
+    <thead class="bg-gray-200 text-gray-700">
+      <tr>
+        <th class="px-4 py-2">Username</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Verified</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for provider in providers %}
+      <tr class="border-t">
+        <td class="px-4 py-2">{{ provider.username }}</td>
+        <td>{{ provider.email }}</td>
+        <td>
+          {% if provider.is_blocked %}
+            <span class="text-red-600">Blocked</span>
+          {% else %}
+            <span class="text-green-600">Active</span>
+          {% endif %}
+        </td>
+        <td>
+          {% if provider.is_verified %}
+            ✅
+          {% else %}
+            ❌
+          {% endif %}
+        </td>
+        <td class="space-x-2">
+          {% if not provider.is_verified %}
+          <a href="{% url 'verify_provider' provider.id %}" class="text-sm text-blue-600 underline">Verify</a>
+          {% endif %}
+          {% if not provider.is_blocked %}
+          <a href="{% url 'block_provider' provider.id %}" class="text-sm text-red-600 underline">Block</a>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

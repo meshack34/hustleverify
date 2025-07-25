@@ -1,9 +1,91 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load form_extras %}
+
+{% block title %}Register as Provider{% endblock %}
+
 {% block content %}
-<h2>Provider Registration</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
-</form>
+<style>
+    .form-container {
+        max-width: 750px;
+        margin: 3rem auto;
+        padding: 2rem 2.5rem;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    }
+    .form-group {
+        margin-bottom: 1.4rem;
+    }
+    label {
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+        display: block;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="file"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="password"],
+    input[type="time"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 0.95rem;
+    }
+    .form-errors {
+        color: #dc3545;
+        font-size: 0.85rem;
+        margin-top: 0.3rem;
+    }
+    .checkbox-group, .radio-group {
+        padding-left: 0.5rem;
+    }
+    .checkbox-group label, .radio-group label {
+        display: block;
+        font-weight: normal;
+    }
+    .submit-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 6px;
+        font-weight: bold;
+        width: 100%;
+        font-size: 1rem;
+    }
+</style>
+
+<div class="form-container">
+    <h2 class="text-center text-primary mb-4">Provider Registration</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                {% if field|widget_type == "checkboxselectmultiple" %}
+                    <label>{{ field.label }}</label>
+                    <div class="checkbox-group">{{ field }}</div>
+                {% elif field|widget_type == "radioselect" %}
+                    <label>{{ field.label }}</label>
+                    <div class="radio-group">{{ field }}</div>
+                {% elif field|widget_type == "checkboxinput" %}
+                    <label>{{ field }} {{ field.label }}</label>
+                {% else %}
+                    {{ field.label_tag }}
+                    {{ field }}
+                {% endif %}
+                {% if field.errors %}
+                    <div class="form-errors">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="submit-btn">Register</button>
+    </form>
+</div>
 {% endblock %}

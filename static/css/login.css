@@ -1,0 +1,87 @@
+/* Center the entire login page content */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 150px); /* leave space for header/footer */
+  background: linear-gradient(to bottom right, #e0f2ff, #f8faff);
+  padding: 2rem 1rem;
+}
+
+/* Card style box */
+.login-box {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Heading */
+.login-title {
+  text-align: center;
+  color: #0d47a1;
+  margin-bottom: 1.5rem;
+  font-size: 24px;
+}
+
+/* Form styles */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border 0.2s ease;
+}
+
+.form-group input:focus {
+  border-color: #0d47a1;
+  outline: none;
+}
+
+/* Submit button */
+.btn-login {
+  width: 100%;
+  background-color: #0d47a1;
+  color: white;
+  padding: 0.7rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+  background-color: #093170;
+}
+
+/* Links */
+.login-links {
+  text-align: center;
+  margin-top: 1.2rem;
+}
+
+.login-links a {
+  color: #0d47a1;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-links a:hover {
+  text-decoration: underline;
+}
