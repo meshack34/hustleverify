@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Find a Service Provider</h2>
+
+  <form method="get" action="{% url 'find_service_provider' %}">
+      <input type="text" name="service_type" placeholder="Enter service type (e.g. mechanic)" value="{{ query|default:'' }}">
+      <button type="submit">Search</button>
+  </form>
+
+  {% if providers %}
+      <h3>Available Providers:</h3>
+      <ul>
+          {% for provider in providers %}
+              <li>{{ provider.user.username }} - {{ provider.service_category }}</li>
+          {% endfor %}
+      </ul>
+  {% elif query %}
+      <p>No providers found for '{{ query }}'.</p>
+  {% endif %}
+{% endblock %}

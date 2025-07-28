@@ -1,4 +1,86 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-<h2>Welcome, Client {{ request.user.username }}</h2>
+<div class="container mt-4">
+    <h2>Welcome, {{ client.full_name }}</h2>
+
+    <!-- Profile Card -->
+    <div class="card mb-4 shadow">
+        <div class="card-body row">
+            <div class="col-md-3">
+                {% if client.profile_picture %}
+                    <img src="{{ client.profile_picture.url }}" class="img-thumbnail" style="width: 100%;" alt="Profile Picture">
+                {% else %}
+                    <img src="{% static 'default_avatar.png' %}" class="img-thumbnail" style="width: 100%;" alt="Default Avatar">
+                {% endif %}
+            </div>
+            <div class="col-md-9">
+                <p><strong>Phone:</strong> {{ client.phone_number }}</p>
+                <p><strong>Email:</strong> {{ client.email }}</p>
+                <p><strong>Location:</strong> {{ client.location }}</p>
+                <p><strong>Address:</strong> {{ client.address }}</p>
+                <p><strong>Emergency Contact:</strong> {{ client.emergency_contact_name }} ({{ client.emergency_contact_relationship }}) - {{ client.emergency_contact_phone }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Provider Search -->
+    <div class="card p-3 mb-3 shadow">
+        <form method="POST">
+            {% csrf_token %}
+            <label for="service">Select Service Category:</label>
+            <select name="service" class="form-select mb-2" required>
+                <option value="">-- Select Service --</option>
+                {% for s in services %}
+                    <option value="{{ s }}" {% if selected_service == s %}selected{% endif %}>{{ s }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- Provider Results -->
+    {% if providers %}
+    <div class="card p-3 shadow">
+        <h4>Service Providers ({{ selected_service }})</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Location</th>
+                    <th>Experience</th>
+                    <th>Availability</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for provider in providers %}
+                <tr>
+                    <td>
+                        {% if provider.profile_picture %}
+                            <img src="{{ provider.profile_picture.url }}" style="width: 50px; height: 50px;" class="rounded-circle">
+                        {% else %}
+                            <img src="{% static 'default_avatar.png' %}" style="width: 50px; height: 50px;" class="rounded-circle">
+                        {% endif %}
+                    </td>
+                    <td>{{ provider.full_name }}</td>
+                    <td>{{ provider.phone_number }}</td>
+                    <td>{{ provider.email }}</td>
+                    <td>{{ provider.location }}</td>
+                    <td>{{ provider.experience_years }} years</td>
+                    <td>{{ provider.availability_days }}<br>{{ provider.availability_start_time }} - {{ provider.availability_end_time }}</td>
+                    <td>{{ provider.ratings|default:"0.0" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% elif selected_service %}
+        <div class="alert alert-warning mt-3">No verified providers found for "{{ selected_service }}"</div>
+    {% endif %}
+</div>
 {% endblock %}

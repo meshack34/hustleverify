@@ -9,16 +9,13 @@ from .models import User
 
 def client_register(request):
     if request.method == 'POST':
-        form = ClientRegisterForm(request.POST)
+        form = ClientRegisterForm(request.POST, request.FILES)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.role = 'client'
-            user.save()
+            form.save()
             return redirect('login')
     else:
         form = ClientRegisterForm()
     return render(request, 'accounts/register_client.html', {'form': form})
-
 
 from django.shortcuts import render, redirect
 from .forms import ProviderRegisterForm

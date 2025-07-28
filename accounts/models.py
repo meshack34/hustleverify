@@ -47,3 +47,23 @@ class ServiceProviderProfile(models.Model):
 
     def __str__(self):
         return self.full_name
+
+class ClientProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    # Basic Info
+    full_name = models.CharField(max_length=100)
+    gender = models.CharField(max_length=10)
+    phone_number = models.CharField(max_length=15, unique=True)
+    email = models.EmailField(unique=True)
+    location = models.CharField(max_length=50)
+    address = models.TextField()
+    profile_picture = models.ImageField(upload_to='client_profiles/', null=True, blank=True)
+
+    # Emergency Contact
+    emergency_contact_name = models.CharField(max_length=100)
+    emergency_contact_relationship = models.CharField(max_length=50)
+    emergency_contact_phone = models.CharField(max_length=15)
+
+    def __str__(self):
+        return self.full_name

@@ -1,6 +1,63 @@
 {% extends 'base.html' %}
-{% block title %}Client Dashboard{% endblock %}
+{% load static %}
+
 {% block content %}
-<h2 class="text-2xl font-bold mb-4">Welcome, {{ request.user.username }} (Client)</h2>
-<p>You can now browse and request services.</p>
+<div class="container mt-5">
+  <h2>Client Dashboard</h2>
+
+  <ul class="nav nav-tabs" id="clientTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="find-tab" data-bs-toggle="tab" href="#find" role="tab">Find Providers</a>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="clientTabContent">
+    <!-- Profile Tab -->
+    <div class="tab-pane fade show active p-3" id="profile" role="tabpanel">
+      <h4>{{ client_profile.full_name }}</h4>
+      <p><strong>Email:</strong> {{ client_profile.email }}</p>
+      <p><strong>Phone:</strong> {{ client_profile.phone_number }}</p>
+      <p><strong>Location:</strong> {{ client_profile.location }}</p>
+      <p><strong>Address:</strong> {{ client_profile.address }}</p>
+      {% if client_profile.profile_picture %}
+        <img src="{{ client_profile.profile_picture.url }}" alt="Profile Pic" width="120">
+      {% endif %}
+    </div>
+
+    <!-- Find Providers Tab -->
+    <div class="tab-pane fade p-3" id="find" role="tabpanel">
+      <form method="get" class="mb-3">
+        {{ form.service_category.label_tag }} {{ form.service_category }}
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+
+      {% if providers %}
+        <h5>Available Providers:</h5>
+        <div class="row">
+          {% for provider in providers %}
+            <div class="col-md-4 mb-4">
+              <div class="card shadow-sm">
+                {% if provider.profile_picture %}
+                  <img src="{{ provider.profile_picture.url }}" class="card-img-top" alt="{{ provider.full_name }}">
+                {% endif %}
+                <div class="card-body">
+                  <h5 class="card-title">{{ provider.full_name }}</h5>
+                  <p><strong>Service:</strong> {{ provider.service_category }}</p>
+                  <p><strong>Location:</strong> {{ provider.location }}</p>
+                  <p><strong>Experience:</strong> {{ provider.experience_years }} years</p>
+                  <p><strong>Availability:</strong> {{ provider.availability_days }}</p>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% elif form.cleaned_data.service_category %}
+        <p>No providers found for this service.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock %}

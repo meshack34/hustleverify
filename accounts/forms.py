@@ -1,3 +1,4 @@
+#accounts/forms.py
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User, ServiceProviderProfile
@@ -109,8 +110,46 @@ class ProviderRegisterForm(UserCreationForm):
             )
         return user
 
+
+from django import forms
+from .models import ClientProfile, User
+from django.contrib.auth.forms import UserCreationForm
+
 class ClientRegisterForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'password1', 'password2']
+
+    full_name = forms.CharField(max_length=100)
+    gender = forms.ChoiceField(choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')])
+    phone_number = forms.CharField(max_length=15)
+    email = forms.EmailField()
+    location = forms.CharField(max_length=50)
+    address = forms.CharField(widget=forms.Textarea)
+    profile_picture = forms.ImageField(required=False)
+
+    emergency_contact_name = forms.CharField(max_length=100)
+    emergency_contact_relationship = forms.CharField(max_length=50)
+    emergency_contact_phone = forms.CharField(max_length=15)
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.role = 'client'
+        if commit:
+            user.save()
+            ClientProfile.objects.create(
+                user=user,
+                full_name=self.cleaned_data['full_name'],
+                gender=self.cleaned_data['gender'],
+                phone_number=self.cleaned_data['phone_number'],
+                email=self.cleaned_data['email'],
+                location=self.cleaned_data['location'],
+                address=self.cleaned_data['address'],
+                profile_picture=self.cleaned_data.get('profile_picture'),
+
+                emergency_contact_name=self.cleaned_data['emergency_contact_name'],
+                emergency_contact_relationship=self.cleaned_data['emergency_contact_relationship'],
+                emergency_contact_phone=self.cleaned_data['emergency_contact_phone']
+            )
+        return user
 
