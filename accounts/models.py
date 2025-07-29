@@ -4,6 +4,7 @@ from django.db import models
 
 class User(AbstractUser):
     ROLE_CHOICES = (
+        ('admin', 'admin'),
         ('client', 'Client'),
         ('provider', 'Service Provider'),
     )
