@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Apply to {{ provider.full_name }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="message" class="form-label">Message (optional)</label>
+            <textarea name="message" class="form-control" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Send Application</button>
+    </form>
+</div>
+{% endblock %}

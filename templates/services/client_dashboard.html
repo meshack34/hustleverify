@@ -55,6 +55,7 @@
                     <th>Experience</th>
                     <th>Availability</th>
                     <th>Rating</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -74,6 +75,13 @@
                     <td>{{ provider.experience_years }} years</td>
                     <td>{{ provider.availability_days }}<br>{{ provider.availability_start_time }} - {{ provider.availability_end_time }}</td>
                     <td>{{ provider.ratings|default:"0.0" }}</td>
+                    <td>
+                        <form method="POST" action="{% url 'apply_for_service' provider.id %}">
+                            {% csrf_token %}
+                            <button class="btn btn-success btn-sm">Apply</button>
+                        </form>
+                    </td>
+
                 </tr>
                 {% endfor %}
             </tbody>

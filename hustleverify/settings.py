@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'accounts',
     'services',
     'core',
+    'adminpanel',
     "widget_tweaks",
     'django.contrib.admin',
     'django.contrib.auth',

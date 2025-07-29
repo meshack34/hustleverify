@@ -34,3 +34,15 @@ class Service(models.Model):
 
     def __str__(self):
         return f"{self.get_service_type_display()} by {self.provider.username} in {self.location}"
+from django.db import models
+from accounts.models import User, ServiceProviderProfile
+
+class ServiceApplication(models.Model):
+    client = models.ForeignKey(User, on_delete=models.CASCADE, limit_choices_to={'role': 'client'})
+    provider = models.ForeignKey(ServiceProviderProfile, on_delete=models.CASCADE)
+    message = models.TextField(blank=True, null=True)
+    applied_at = models.DateTimeField(auto_now_add=True)
+    is_accepted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.client.username} -> {self.provider.full_name}"

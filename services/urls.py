@@ -14,5 +14,6 @@ urlpatterns = [
     path('client/dashboard/', views.client_dashboard, name='client_dashboard'),
     path('client/find-providers/', views.find_service_provider, name='find_service_provider'),
     path('find/', find_service_provider, name='find_service_provider'),
+    path('apply/<int:provider_id>/', views.apply_for_service, name='apply_for_service'),
 ]
 
