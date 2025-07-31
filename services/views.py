@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from accounts.models import ClientProfile, ServiceProviderProfile
 from .models import ServiceApplication, Service  # Assuming ServiceApplication model exists
+from accounts.models import ServiceProviderProfile
 
 # -------------------------------
 # Provider Dashboard
@@ -101,3 +102,48 @@ def find_service_provider(request):
         'providers': providers,
         'query': query
     })
+
+
+from django.shortcuts import render, get_object_or_404
+from .models import Service
+
+def services_list(request):
+    services = Service.objects.all()
+    return render(request, 'services/services_list.html', {'services': services})
+
+def service_detail(request, service_id):
+    service = get_object_or_404(Service, id=service_id)
+    return render(request, 'services/service_detail.html', {'service': service})
+from django.shortcuts import render
+from accounts.models import ServiceProviderProfile
+
+def services_view(request):
+    categories = ServiceProviderProfile.objects.values_list('service_category', flat=True).distinct()
+    context = {
+        'categories': categories
+    }
+    return render(request, 'services/services.html', context)
+
+def providers_by_category(request, category):
+    providers = ServiceProviderProfile.objects.filter(service_category=category, is_verified=True)
+    context = {
+        'category': category,
+        'providers': providers
+    }
+    return render(request, 'services/providers_by_category.html', context)
+
+
+
+def providers_list(request):
+    providers = ServiceProviderProfile.objects.select_related('user').all()
+    return render(request, 'providers/providers_list.html', {'providers': providers})
+
+def provider_profile(request, provider_id):
+    provider = get_object_or_404(ServiceProviderProfile, id=provider_id)
+    return render(request, 'providers/provider_profile.html', {'provider': provider})
+def about_page(request):
+    return render(request, 'core/about.html')
+
+def contact_page(request):
+    return render(request, 'core/contact.html')
+

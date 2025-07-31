@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+  <h2 class="text-primary">{{ provider.user.get_full_name }}</h2>
+  <p><strong>Profession:</strong> {{ provider.profession }}</p>
+  <p><strong>Experience:</strong> {{ provider.experience }} years</p>
+  <p><strong>Contact:</strong> {{ provider.user.email }}</p>
+</div>
+{% endblock %}

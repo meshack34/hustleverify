@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">Service Providers - {{ category }}</h2>
+  <div class="row">
+    {% for provider in providers %}
+      <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ provider.full_name }}</h5>
+            <p>
+            {% if provider.profile_picture %}
+              <img src="{{ provider.profile_picture.url }}" class="img-fluid rounded mb-2" alt="Profile Picture">
+            {% else %}
+              <img src="{% static 'default_avatar.png' %}" class="img-fluid rounded mb-2" alt="Default Avatar">
+            {% endif %} </p>
+            <p><strong>Email:</strong> {{ provider.email }}</p>
+            <p><strong>Location:</strong> {{ provider.location }}</p>
+            <p><strong>Experience:</strong> {{ provider.experience_years }} years</p>
+            <p><strong>Availability:</strong> {{ provider.availability_days }} from  {{ provider.availability_start_time }} to {{ provider.availability_end_time }} </p> 
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No providers available in this category.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+
+
+ {% comment %} 
+    gender = models.CharField(max_length=10)
+    phone_number = models.CharField(max_length=15, unique=True)
+    email = models.EmailField(unique=True)
+    location = models.CharField(max_length=50)
+    address = models.TextField()
+    profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+
+    # ID Verification
+    id_number = models.CharField(max_length=20)
+    id_image = models.ImageField(upload_to='id_images/', null=True, blank=True)
+
+    # Service Details
+    service_category = models.CharField(max_length=100)
+    availability_days = models.CharField(max_length=200)  # e.g., "Monday,Wednesday,Friday"
+    availability_start_time = models.TimeField()
+    availability_end_time = models.TimeField()
+    experience_years = models.IntegerField()
+    certifications = models.FileField(upload_to='certifications/', null=True, blank=True)
+
+    # Next of Kin
+    next_of_kin_full_name = models.CharField(max_length=100)
+    next_of_kin_relationship = models.CharField(max_length=50)
+    next_of_kin_phone = models.CharField(max_length=15)
+    
+    
+
+    # Status
+    ratings = models.FloatField(default=0.0) {% endcomment %}

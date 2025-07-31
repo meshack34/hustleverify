@@ -15,5 +15,14 @@ urlpatterns = [
     path('client/find-providers/', views.find_service_provider, name='find_service_provider'),
     path('find/', find_service_provider, name='find_service_provider'),
     path('apply/<int:provider_id>/', views.apply_for_service, name='apply_for_service'),
+    
+    path('services/', views.services_view, name='services'),
+    path('providers/<str:category>/', views.providers_by_category, name='providers_by_category'),
+    
+    path('services/<int:service_id>/', views.service_detail, name='service_detail'),
+    path('providers/', views.providers_list, name='providers'),
+    path('providers/<int:provider_id>/', views.provider_profile, name='provider_profile'),
+    path('about/', views.about_page, name='about'),
+    path('contact/', views.contact_page, name='contact'),
 ]
 

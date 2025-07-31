@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+  <h2 class="text-center text-primary mb-4">Our Available Services</h2>
+  <div class="row">
+    {% for service in services %}
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ service.title }}</h5>
+          <p class="card-text">{{ service.description|truncatechars:160 }}</p>
+          <a href="{% url 'service_detail' service.id %}" class="btn btn-outline-primary btn-sm">Learn More</a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p class="text-muted">No services available at the moment.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
