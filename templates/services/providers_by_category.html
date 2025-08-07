@@ -1,62 +1,74 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<style>
+  .provider-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .provider-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+  .provider-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  .rating {
+    color: #f1c40f;
+    font-size: 1.2rem;
+  }
+  .availability-badge {
+    background-color: #e9f7ef;
+    color: #27ae60;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin: 2px;
+    display: inline-block;
+  }
+</style>
+
 <div class="container mt-5">
-  <h2 class="mb-4">Service Providers - {{ category }}</h2>
-  <div class="row">
+  <h2 class="text-center text-primary mb-5">Top {{ category }} Providers</h2>
+
+  <div class="row justify-content-center">
     {% for provider in providers %}
-      <div class="col-md-4 mb-3">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h5 class="card-title">{{ provider.full_name }}</h5>
-            <p>
-            {% if provider.profile_picture %}
-              <img src="{{ provider.profile_picture.url }}" class="img-fluid rounded mb-2" alt="Profile Picture">
-            {% else %}
-              <img src="{% static 'default_avatar.png' %}" class="img-fluid rounded mb-2" alt="Default Avatar">
-            {% endif %} </p>
-            <p><strong>Email:</strong> {{ provider.email }}</p>
-            <p><strong>Location:</strong> {{ provider.location }}</p>
-            <p><strong>Experience:</strong> {{ provider.experience_years }} years</p>
-            <p><strong>Availability:</strong> {{ provider.availability_days }} from  {{ provider.availability_start_time }} to {{ provider.availability_end_time }} </p> 
+      <div class="col-md-4 mb-4 d-flex align-items-stretch">
+        <div class="card provider-card shadow-sm w-100 text-center p-3">
+          
+          {% if provider.profile_picture %}
+            <img src="{{ provider.profile_picture.url }}" alt="Profile Picture" class="provider-img mx-auto">
+          {% else %}
+            <img src="{% static 'default_avatar.png' %}" alt="Default Avatar" class="provider-img mx-auto">
+          {% endif %}
+          
+          <h5 class="card-title">{{ provider.full_name }}</h5>
+
+          {% if provider.ratings %}
+            <p class="rating mb-1">⭐ {{ provider.ratings|floatformat:1 }} / 5.0</p>
+          {% endif %}
+
+          <p><i class="fa fa-envelope text-muted"></i> {{ provider.email }}</p>
+          <p><i class="fa fa-map-marker-alt text-muted"></i> {{ provider.location }}</p>
+          <p><i class="fa fa-briefcase text-muted"></i> {{ provider.experience_years }} years experience</p>
+          
+          <div class="mb-2">
+            <strong>Available on:</strong><br>
+            {% for day in provider.availability_days %}
+              <span class="availability-badge">{{ day|capfirst }}</span>
+            {% endfor %}
           </div>
+          <p class="text-muted mb-0"><strong>Hours:</strong> {{ provider.availability_start_time|time:"H:i" }} - {{ provider.availability_end_time|time:"H:i" }}</p>
         </div>
       </div>
     {% empty %}
-      <p>No providers available in this category.</p>
+      <div class="col-12 text-center">
+        <p class="text-muted">No providers available in this category at the moment.</p>
+      </div>
     {% endfor %}
   </div>
 </div>
 {% endblock %}
-
-
-
- {% comment %} 
-    gender = models.CharField(max_length=10)
-    phone_number = models.CharField(max_length=15, unique=True)
-    email = models.EmailField(unique=True)
-    location = models.CharField(max_length=50)
-    address = models.TextField()
-    profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
-
-    # ID Verification
-    id_number = models.CharField(max_length=20)
-    id_image = models.ImageField(upload_to='id_images/', null=True, blank=True)
-
-    # Service Details
-    service_category = models.CharField(max_length=100)
-    availability_days = models.CharField(max_length=200)  # e.g., "Monday,Wednesday,Friday"
-    availability_start_time = models.TimeField()
-    availability_end_time = models.TimeField()
-    experience_years = models.IntegerField()
-    certifications = models.FileField(upload_to='certifications/', null=True, blank=True)
-
-    # Next of Kin
-    next_of_kin_full_name = models.CharField(max_length=100)
-    next_of_kin_relationship = models.CharField(max_length=50)
-    next_of_kin_phone = models.CharField(max_length=15)
-    
-    
-
-    # Status
-    ratings = models.FloatField(default=0.0) {% endcomment %}

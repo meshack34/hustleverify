@@ -40,6 +40,24 @@
         <p class="lead text-muted">Explore categories of services offered by verified providers in your area.</p>
     </div>
     <div class="row">
+               <div class="col-md-4">
+    <div class="service-card">
+        <img src="{% static 'images/mechanic1.jpeg' %}" alt="Mechanic">
+        <div class="service-card-body">
+            <h4>Mechanic</h4>
+            <p>Get access to skilled mechanics...</p>
+            <a href="/providers/Mechanic/" class="btn btn-primary">Static Link</a>
+            
+            {% with service_name="Mechanic" %}
+                <a href="{% url 'providers_by_category' category_links.service_name %}" class="btn btn-primary btn-sm">View Providers</a>
+            {% endwith %}
+        </div>
+    </div>
+</div>
+
+
+
+               
 
         <div class="col-md-4">
             <div class="service-card">
@@ -48,6 +66,8 @@
                     <h4>Mechanic</h4>
                     <p>Get access to skilled mechanics for car and motorbike repair, routine maintenance, engine diagnostics, battery checks, oil changes, brake systems, and emergency roadside assistance — wherever you are.</p>
                     <a href="/providers/Mechanic/" class="btn btn-primary">View Providers</a>
+                      <a href="{% url 'providers_by_category' category.name %}" class="btn btn-primary btn-sm">View Providers</a>
+
                 </div>
             </div>
         </div>
@@ -57,7 +77,9 @@
                 <img src="{% static 'images/repair.jpeg' %}" alt="Plumber">
                 <div class="service-card-body">
                     <h4>Plumber</h4>
-                    <p>We connect you with reliable plumbers to fix leaking pipes, install taps, unblock drainage systems, repair toilets, and handle all water-related issues — for homes, businesses, or construction sites.</p>
+                    <p>We connect you with reliable plumbers to fix leaking pipes, install 
+                              taps, unblock drainage systems, repair toilets, and handle all water-related
+                               issues — for homes, businesses, or construction sites.</p>
                     <a href="/providers/Plumber/" class="btn btn-primary">View Providers</a>
                 </div>
             </div>

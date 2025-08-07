@@ -1,6 +1,8 @@
 # services/models.py
 from django.db import models
 from django.db import models
+from accounts.models import User
+
 
 class City(models.Model):
     name = models.CharField(max_length=100)
@@ -15,14 +17,26 @@ class Location(models.Model):
     def __str__(self):
         return f"{self.name} - {self.city.name}"
 
-from accounts.models import User
 
 SERVICE_CHOICES = [
+    ('mechanic', 'Mechanic'),
     ('plumber', 'Plumber'),
     ('electrician', 'Electrician'),
-    ('baker', 'Baker'),
     ('cleaner', 'Cleaner'),
+    ('baker', 'Baker'),
+    ('gardener', 'Gardener'),
+    ('painter', 'Painter'),
+    ('carpenter', 'Carpenter'),
+    ('tailor', 'Tailor'),
+    ('mamafua', 'Mamafua'),
+    ('mason', 'Mason'),
+    ('chef', 'Chef'),
+    ('hairdresser', 'Hairdresser'),
+    ('photographer', 'Photographer'),
+    ('tutor', 'Tutor'),
+    ('home_repairs', 'Home Repairs & Maintenance'),
 ]
+
 
 class Service(models.Model):
     provider = models.ForeignKey(User, on_delete=models.CASCADE, limit_choices_to={'role': 'provider'})
