@@ -46,11 +46,11 @@ GENDER_CHOICES = [
 ]
 
 LOCATION_CHOICES = [
-    ('Nairobi', 'Nairobi'),
-    ('Mombasa', 'Mombasa'),
-    ('Kisumu', 'Kisumu'),
-    ('Nakuru', 'Nakuru'),
-    ('Eldoret', 'Eldoret'),
+    ('Kilimani', 'Kilimani'),
+    ('CBD Nairobi', 'CBD Nairobi'),
+    ('High Ridge', 'High Ridge'),
+    ('Lavington', 'Lavington'),
+    ('Uper hill', 'Uper hill'),
 ]
 
 class ProviderRegisterForm(UserCreationForm):
