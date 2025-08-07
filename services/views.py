@@ -117,12 +117,32 @@ def service_detail(request, service_id):
 from django.shortcuts import render
 from accounts.models import ServiceProviderProfile
 
+# services/views.py
+from django.shortcuts import render
+from accounts.models import ServiceProviderProfile
+
+CATEGORY_DESCRIPTIONS = {
+    'Mechanic': 'Expert in vehicle repair and maintenance.',
+    'Electrician': 'Certified to handle all your electrical needs.',
+    'Cleaner': 'Professional cleaning services for your home or office.',
+    'Baker': 'Delicious baked goods for every occasion.',
+    # Add more as needed
+}
+
 def services_view(request):
     categories = ServiceProviderProfile.objects.values_list('service_category', flat=True).distinct()
+    category_data = []
+
+    for cat in categories:
+        category_data.append({
+            'name': cat,
+            'description': CATEGORY_DESCRIPTIONS.get(cat, 'Reliable and trusted service providers.'),
+        })
+
     context = {
-        'categories': categories
+        'categories': category_data
     }
-    return render(request, 'services/services.html', context)
+    return render(request, 'services/services2.html', context)
 
 def providers_by_category(request, category):
     providers = ServiceProviderProfile.objects.filter(service_category=category, is_verified=True)

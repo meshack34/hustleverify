@@ -75,6 +75,18 @@ SERVICE_CHOICES = [
     ('Electrician', 'Electrician'),
     ('Cleaner', 'Cleaner'),
     ('Baker', 'Baker'),
+    ('Gardener', 'Gardener'),
+    ('Painter', 'Painter'),
+    ('Carpenter', 'Carpenter'),
+    ('Tailor', 'Tailor'),
+    ('Mamafua', 'Mamafua'),   
+    ('Mason', 'Mason'),
+    ('Chef', 'Chef'),
+    ('Hairdresser', 'Hairdresser'),
+    ('Photographer', 'Photographer'),
+    ('Tutor', 'Tutor'),
+    ('Home Repairs & Maintenance', 'Home Repairs & Maintenance'),
+    
 ]
 
 class ServiceFilterForm(forms.Form):

@@ -1,21 +1,86 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<div class="container py-5">
-  <h2 class="text-primary text-center mb-4">About HustleVerify</h2>
+<style>
+  .about-section {
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
-  <div class="mb-4">
-    <h4 class="text-success">Our Motto</h4>
-    <p class="text-muted">"Empowering Hustlers, Delivering Trust."</p>
+  .about-section h2 {
+    color: #007bff;
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 700;
+  }
+
+  .about-section h4 {
+    color: #28a745;
+    margin-top: 30px;
+    font-weight: 600;
+  }
+
+  .about-section p {
+    color: #444;
+    line-height: 1.7;
+    font-size: 1.05rem;
+  }
+
+  .founder-quote {
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    border-left: 4px solid #007bff;
+    padding-left: 15px;
+    color: #555;
+  }
+
+  .founder-name {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #000;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: auto;
+  }
+</style>
+
+<div class="about-section container">
+  <h2>About HustleVerify</h2>
+
+  <div>
+    <h4>Who We Are</h4>
+    <p>
+      HustleVerify is Kenya’s trusted digital platform connecting clients with skilled, verified local service providers—from plumbers and electricians to mechanics, bakers, cleaners, and more. Whether you're a homeowner looking for quick, reliable help or a talented hustler searching for opportunities, HustleVerify bridges the gap with integrity, transparency, and convenience.
+    </p>
   </div>
 
-  <div class="mb-4">
-    <h4 class="text-success">Our Vision</h4>
-    <p>To be the leading platform connecting local service providers with trusted clients across Africa, unlocking economic opportunities through technology and trust.</p>
+  <div>
+    <h4>Our Vision</h4>
+    <p>
+      To become Kenya’s most trusted platform for discovering, verifying, and hiring skilled service providers, while uplifting livelihoods and promoting dignity in the informal economy.
+    </p>
   </div>
 
-  <div class="mb-4">
-    <h4 class="text-success">Our Mission</h4>
-    <p>We aim to empower everyday hustlers by offering a secure, accessible, and reliable space to showcase their skills, gain clients, and grow their income while ensuring top-quality service delivery to users.</p>
+  <div>
+    <h4>Our Mission</h4>
+    <p>
+      At HustleVerify, our mission is to bridge the gap between clients and skilled local service providers by offering a trusted platform where every professional is verified, rated, and accountable. We strive to simplify access to quality services—be it plumbing, electrical work, cleaning, mechanics, or more—while promoting safety, transparency, and professionalism across all interactions.
+    </p>
+  </div>
+
+  <div>
+    <h4>Meet the Founder</h4>
+    <p class="founder-quote">
+      “I started HustleVerify because I saw the daily struggles of both clients and hustlers. People need services, and service providers need jobs—but there was no trusted system to connect them reliably. HustleVerify is my commitment to solving this gap, restoring trust, and making sure no honest hustle goes unnoticed.”
+    </p>
+    <p class="founder-name">— Cyrus Kipchumba, Founder & CEO</p>
+    <p>
+      Founded by Cyrus Kipchumba in 2025, HustleVerify was born out of a simple need—to make finding trustworthy service providers easier, and to give hardworking individuals a platform to showcase their skills, earn more, and build a credible reputation.
+    </p>
   </div>
 </div>
 {% endblock %}

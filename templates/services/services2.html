@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Services - HustleVerify{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #f9f9f9;
+    }
+    .service-section {
+        padding: 50px 0;
+    }
+    .service-card {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        margin-bottom: 30px;
+    }
+    .service-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    .service-card-body {
+        padding: 20px;
+    }
+    .service-card h4 {
+        font-weight: bold;
+    }
+    .service-card p {
+        color: #555;
+    }
+</style>
+
+<div class="container service-section">
+    <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold">Available Services</h2>
+        <p class="lead text-muted">Explore categories of services offered by verified providers in your area.</p>
+    </div>
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="service-card">
+                <img src="{% static 'images/mechanic1.jpeg' %}" alt="Mechanic">
+                <div class="service-card-body">
+                    <h4>Mechanic</h4>
+                    <p>Get access to skilled mechanics for car and motorbike repair, routine maintenance, engine diagnostics, battery checks, oil changes, brake systems, and emergency roadside assistance — wherever you are.</p>
+                    <a href="/providers/Mechanic/" class="btn btn-primary">View Providers</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="service-card">
+                <img src="{% static 'images/repair.jpeg' %}" alt="Plumber">
+                <div class="service-card-body">
+                    <h4>Plumber</h4>
+                    <p>We connect you with reliable plumbers to fix leaking pipes, install taps, unblock drainage systems, repair toilets, and handle all water-related issues — for homes, businesses, or construction sites.</p>
+                    <a href="/providers/Plumber/" class="btn btn-primary">View Providers</a>
+                </div>
+            </div>
+        </div>
+    
+            <div class="col-md-4">
+                <div class="service-card">
+                     <img src="{% static 'images/repair.jpeg' %}" alt="Electrician">
+                    <div class="service-card-body">
+                        <h4>Electrician</h4>
+                        <p>Hire certified electricians for wiring, socket installations, lighting repairs, power outages, appliance connections, or electrical safety checks. We ensure safe, code-compliant solutions for every job.</p>
+                        <a href="/providers/Electrician/" class="btn btn-primary">View Providers</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-4">
+                <div class="service-card">
+                <img src="{% static 'images/repair.jpeg' %}" alt="Cleaner">
+                    <div class="service-card-body">
+                        <h4>Cleaner</h4>
+                        <p>Get your home, office, shop, or compound cleaned by professional, background-checked cleaners. We offer general cleaning, deep cleaning, post-construction cleaning, and move-in/move-out services.</p>
+                        <a href="/providers/Cleaner/" class="btn btn-primary">View Providers</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="images/repair.jpeg" alt="Baker">
+                    <div class="service-card-body">
+                        <h4>Baker</h4>
+                        <p>Order freshly baked cakes, pastries, cookies, and event platters from verified local bakers near you. Perfect for birthdays, weddings, events, or custom home orders — baked with care and delivered on time.</p>
+                        <a href="/providers/Baker/" class="btn btn-primary">View Providers</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="images/repair.jpeg" alt="Electrician">
+                    <div class="service-card-body">
+                        <h4>Electrician</h4>
+                        <p>Hire certified electricians for wiring, socket installations, lighting repairs, power outages, appliance connections, or electrical safety checks. We ensure safe, code-compliant solutions for every job.</p>
+                        <a href="/providers/Electrician/" class="btn btn-primary">View Providers</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="images/repair.jpeg" alt="Cleaner">
+                    <div class="service-card-body">
+                        <h4>Mamafua (Laundry Services)</h4>
+                        <p>Book experienced mamafua for affordable and thorough washing, ironing, and folding of clothes, bedding, or curtains — from the comfort of your home. Daily, weekly, or custom schedules available..</p>
+                        <a href="/providers/Cleaner/" class="btn btn-primary">Laundry Services</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-4">
+                <div class="service-card">
+                    <img src="images/repair.jpeg" alt="Baker">
+                    <div class="service-card-body">
+                        <h4> Appliance Installation & Repair</h4>
+                        <p>Hire technicians to install or repair fridges, microwaves, TVs, washing machines, cookers, and other household appliances. 
+                              Fast response and tested professionals.</p>
+                        <a href="/providers/Baker/" class="btn btn-primary">View Appliance</a>
+                    </div>
+                </div>
+            </div>
+
+        
+
+    </div>
+</div>
+{% endblock %}
