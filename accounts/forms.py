@@ -10,12 +10,23 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User, ServiceProviderProfile
 
-SERVICE_CHOICES = [
-    ('Mechanic', 'Mechanic'),
-    ('Plumber', 'Plumber'),
-    ('Electrician', 'Electrician'),
-    ('Cleaner', 'Cleaner'),
-    ('Baker', 'Baker'),
+SERVICE_CHOICES = [  
+    ('mechanic', 'Mechanic'),
+    ('plumber', 'Plumber'),
+    ('electrician', 'Electrician'),
+    ('cleaner', 'Cleaner'),
+    ('baker', 'Baker'),
+    ('gardener', 'Gardener'),
+    ('painter', 'Painter'),
+    ('carpenter', 'Carpenter'),
+    ('tailor', 'Tailor'),
+    ('mamafua', 'Mamafua'),
+    ('mason', 'Mason'),
+    ('chef', 'Chef'),
+    ('hairdresser', 'Hairdresser'),
+    ('photographer', 'Photographer'),
+    ('tutor', 'Tutor'),
+    ('home_repairs', 'Home Repairs & Maintenance'),
 ]
 
 DAYS_OF_WEEK = [
